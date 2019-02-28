@@ -1,0 +1,47 @@
+version: '3.3'
+services:
+  mysql:
+    build: ../database/mysql
+    image: mysql:8.0.15
+    restart: always
+    environment:
+      MYSQL_DATABASE: skillMgr
+      MYSQL_USER: skillMgr
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+    networks:
+      - "skill-mgr-system-net"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ../database/mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ../database/mysql/data:/var/lib/mysql
+      - ../database/mysql/conf.d:/etc/mysql/conf.d
+      - ../database/log/mysql:/var/log/mysql
+  discovery:
+    build: ../discovery
+    networks:
+      - "skill-mgr-system-net"
+    ports:
+      - "8761:8761"
+  gateway:
+    build: ../gateway
+    networks:
+      - "skill-mgr-system-net"
+    ports:
+      - "80:8080"
+  skill-mgr-api:
+    build: ../skillMgrApi
+    networks:
+      - "skill-mgr-system-net"
+    ports:
+      - "8081:8081"
+  ui:
+    build: ../service-ui
+    networks:
+      - "skill-mgr-system-net"
+    ports:
+      - "8082:8082"
+networks:
+  skill-mgr-system-net:
+    driver: bridge
