@@ -1,8 +1,10 @@
 version: '3.3'
+volumes:
+  mysql-db:
+    driver: local
 services:
   mysql:
     build: ../database/mysql
-    image: mysql:8.0.15
     restart: always
     environment:
       MYSQL_DATABASE: skillMgr
@@ -15,7 +17,7 @@ services:
       - "3306:3306"
     volumes:
       - ../database/mysql/initdb.d:/docker-entrypoint-initdb.d
-      - ../database/mysql/data:/var/lib/mysql
+      - mysql-db:/var/lib/mysql
       - ../database/mysql/conf.d:/etc/mysql/conf.d
       - ../database/log/mysql:/var/log/mysql
   discovery:
