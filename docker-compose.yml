@@ -36,6 +36,12 @@ services:
       - "skill-mgr-system-net"
     ports:
       - "8081:8081"
+  skill-mgr-ui:
+    build: ../skillMgrUi
+    networks:
+      - "skill-mgr-system-net"
+    ports:
+      - "3000:3000"
   ui:
     build: ../service-ui
     networks:
