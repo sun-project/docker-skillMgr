@@ -18,7 +18,6 @@ services:
     volumes:
       - ../database/mysql/initdb.d:/docker-entrypoint-initdb.d
       - mysql-db:/var/lib/mysql
-      - ../database/mysql/conf.d:/etc/mysql/conf.d
       - ../database/log/mysql:/var/log/mysql
   discovery:
     build: ../discovery
@@ -44,12 +43,6 @@ services:
       - "skill-mgr-system-net"
     ports:
       - "3000:3000"
-  ui:
-    build: ../service-ui
-    networks:
-      - "skill-mgr-system-net"
-    ports:
-      - "8082:8082"
 networks:
   skill-mgr-system-net:
     driver: bridge
