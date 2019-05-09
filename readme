@@ -14,9 +14,8 @@ docker-compose down -v
 
 # 起動中に新しいコンテナに更新する場合
 docker-compose build [container_name]
-docker-compose down
 docker-compose up -d
-# もしかしたらupだけでもいけるかも？
+# downはしなくてOK
 
 # ログ確認
 docker-compose logs

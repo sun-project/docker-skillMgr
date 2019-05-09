@@ -36,12 +36,12 @@ services:
       - "skill-mgr-system-net"
     ports:
       - "8081:8081"
-  skill-mgr-ui:
-    image: registry.kirin.mydns.jp/sun-project/skill-mgr-ui
-    networks:
-      - "skill-mgr-system-net"
-    ports:
-      - "3000:3000"
+#  skill-mgr-ui:
+#    image: registry.kirin.mydns.jp/sun-project/skill-mgr-ui
+#    networks:
+#      - "skill-mgr-system-net"
+#    ports:
+#      - "3000:3000"
 networks:
   skill-mgr-system-net:
     driver: bridge
