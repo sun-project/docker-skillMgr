@@ -1,3 +1,25 @@
+# 使い方
+
+## GitHub Personal Access Token (PAT) の作成
+
+[個人アクセストークンを使用する] を参考に、Personal Access Tokenを作成します。
+
+[個人アクセストークンを使用する]: https://docs.github.com/ja/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token
+
+- アクセストークンには、 `read:packages` の権限を付与してください。
+- 発行したアクセストークンは、二度と表示されないため、注意してください。
+
+## Docker registryへのログイン
+
+`docker-compose` を実行するホスト上で、Docker registryにログインします。
+
+```sh
+docker login docker.pkg.github.com -u <GitHubのユーザー名> -p <アクセストークン>
+```
+
+## 起動・停止コマンド集
+
+```sh
 # 起動
 docker-compose up -d
 # ビルドして起動
@@ -30,3 +52,4 @@ docker-compose top [container_name]
 
 # コンテナに入る
 docker-compose exec [container_name] /bin/sh
+```
